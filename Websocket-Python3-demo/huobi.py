@@ -7,7 +7,7 @@ import time
 if __name__ == '__main__':
     while(1):
         try:
-            ws = create_connection("wss://www.hbdm.com/ws")
+            ws = create_connection("wss://api.hbdm.com/ws")
             break
         except:
             print('connect ws error,retry...')
@@ -42,7 +42,7 @@ if __name__ == '__main__':
     # 订阅 Market Depth 数据
     tradeStr_marketDepth="""
     {
-        "sub": "market.BTC_CQ.depth.step0", "id": "id9"
+        "sub": "market.BTC_CQ.depth.step6", "id": "id9"
     }
     """
 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
             ts=result[8:21]
             pong='{"pong":'+ts+'}'
             ws.send(pong)
-            ws.send(tradeStr_kline)
+            # ws.send(tradeStr_kline)
         else:
             try:
                 if trade_id == result['data']['id']:
